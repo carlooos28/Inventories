@@ -91,7 +91,7 @@ class InventoryController extends Controller
             return redirect('sales');        
         }
 
-        return redirect('product')->with('status', 'There is no product availability!');
+        return redirect('product')->with('status', 'There is no product availability or is an amount greater than the available!');
 
     }
     

@@ -26,11 +26,7 @@
 				@endforeach
 			</tbody>
 		</table>
-		@if (session('status'))
-			<div class="alert alert-info">
-				{{ session('status') }}
-			</div>
-		@endif  		
+		@include('layouts.partials._message')
 	</div>
 
 @endsection
