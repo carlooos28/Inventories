@@ -18,7 +18,7 @@ class SalesTableSeeder extends Seeder
                 'product_id' => $item,
                 'quantity' => 1,
                 'price' => 50000,
-                'status' => "pending", //sold , canceled,
+                'status' => "sold", //sold , canceled,
                 'created_at' => "2018-06-01"
 	        ]);
     	}

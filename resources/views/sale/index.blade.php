@@ -27,22 +27,46 @@
 				<td>{{$sale['quantity'] * $sale['product']['price']}}</td>
 				<td>{{$sale['status']}}</td>
 				<td>{{$sale['created_at']}}</td>
-				<td>
+				@if ($sale['status'] !== "canceled")
+				<td>					
 					<a href="{{action('SaleController@invoice', $sale['id'])}}" class="btn btn-success">
 						Generate Invoice
-					</a>
+					</a>					
 				</td>
 				<td>
-					<form action="{{action('SaleController@invoice', $sale['id'])}}" method="post">
+					<form action="{{action('SaleController@update', $sale['id'])}}" method="post">
 						{{csrf_field()}}
-						<input name="_method" type="hidden" value="DELETE">
+						{{ method_field('PATCH') }}						
+						<input type="hidden" name="product_id" value={{$sale['product']['id']}}>
 						<button class="btn btn-danger" type="submit">Cancel</button>
 					</form>
 				</td>
+				@else
+				<td>
+				</td>
+				<td>
+				</td>				
+				@endif				
 			</tr>
 			@endforeach
 			</tbody>
 		</table>
+
+		@if ($errors->any())
+			<div class="alert alert-danger">
+				<ul>
+					@foreach ($errors->all() as $error)
+						<li>{{ $error }}</li>
+					@endforeach
+				</ul>
+			</div>
+		@endif
+
+		@if (session('status'))
+			<div class="alert alert-info">
+				{{ session('status') }}
+			</div>
+		@endif	
 
 		{{ $sales->links('vendor.pagination.bootstrap-4') }}
 
