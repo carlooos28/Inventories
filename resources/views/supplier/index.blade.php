@@ -1,0 +1,80 @@
+@extends('layouts.main')
+@section('content')
+	<div class="container">
+
+		<h1>Supplier - products</h1>
+
+		<a href="{{url('/')}}" class="btn btn-info float-right"> Return Home</a>		
+		<br><br> 
+
+		<form method="post" action="{{url('inventory')}}">
+
+			<div class="form-group row">
+				{{csrf_field()}}
+				<label  class="col-2 ">Supplier</label>
+				<div class="col-10">
+					<select class="form-control " placeholder="Select supplier" name="supplier_id">
+						@foreach($suppliers as $supplier)
+							<option value={{$supplier['id']}}>{{$supplier['name']}}</option>
+						@endforeach          
+					</select>
+				</div>
+			</div>
+
+			<div class="form-group row">
+				{{csrf_field()}}
+				<label  class="col-2 ">Product</label>
+				<div class="col-10">
+					<select class="form-control " placeholder="Select product" name="product_id">
+						@foreach($products as $product)
+						<option value={{$product['id']}}>{{$product['name']}}</option>
+						@endforeach          
+					</select>
+				</div>
+			</div>
+
+			<div class="form-group row">
+				<label  class="col-2 ">quantity</label>
+				<div class="col-10">
+					<input type="text" name="quantity" class="form-control ">
+				</div>
+			</div>
+
+			<div class="form-group row">
+				<label  class="col-2 ">Lote</label>
+				<div class="col-10">
+					<input type="text" name="lote" class="form-control ">
+				</div>
+			</div>
+
+			<div class="form-group row">
+				<label  class="col-2 ">Expiration Date</label>
+				<div class="col-10">
+					<input type="date" name="expiration_date" class="form-control ">
+				</div>
+			</div>
+
+			<div class="form-group row">
+				<label  class="col-2 ">Price</label>
+				<div class="col-10">
+					<input type="text" name="price" class="form-control ">
+				</div>
+			</div>
+			
+			<button type="submit" class="btn btn-success  float-right"> Save </button>
+			
+		</form>
+
+	</div>
+
+	@if ($errors->any())
+	<div class="alert alert-danger">
+		<ul>
+			@foreach ($errors->all() as $error)
+				<li>{{ $error }}</li>
+			@endforeach
+		</ul>
+	</div>
+	@endif
+
+@endsection
