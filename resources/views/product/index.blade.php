@@ -59,12 +59,14 @@
             let priceProduct = products.options[products.selectedIndex].getAttribute('data-price');
 
                 totalQuantity = (paramQuantity === 0) ? quantity.value : paramQuantity;
-                price.value   = parseInt(totalQuantity) * parseInt(priceProduct);
+
+                return price.value   = parseInt(totalQuantity) * parseInt(priceProduct);
         }
 
         quantity.addEventListener('keyup', function (event) {
             let quantity = event.target.value;
-                changePrice(products, quantity);
+
+                return changePrice(products, quantity);
         })
 
 @endsection

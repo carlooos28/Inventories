@@ -15,14 +15,15 @@ class CreateDetailProductsTable extends Migration
     {
         Schema::create('detail_products', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('supplier_id')->unsigned();
             $table->integer('product_id')->unsigned();
             $table->integer('quantity')->unsigned();
             $table->string('lote');
             $table->date('expiration_date');
-            $table->integer('price')->unsigned();
             $table->timestamps();
 
-            $table->foreign('product_id')->references('id')->on('products');
+            $table->foreign('supplier_id')->references('id')->on('suppliers');    
+            $table->foreign('product_id')->references('id')->on('products');            
 
         });
     }

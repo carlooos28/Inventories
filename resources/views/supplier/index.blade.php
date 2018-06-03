@@ -25,9 +25,9 @@
 				{{csrf_field()}}
 				<label  class="col-2 ">Product</label>
 				<div class="col-10">
-					<select class="form-control " placeholder="Select product" name="product_id">
+					<select class="form-control " onChange="changePrice(this)" placeholder="Select product" name="product_id">
 						@foreach($products as $product)
-						<option value={{$product['id']}}>{{$product['name']}}</option>
+						<option value={{$product['id']}} data-price='{{$product['price']}}'>{{$product['name']}}</option>
 						@endforeach          
 					</select>
 				</div>
@@ -55,9 +55,9 @@
 			</div>
 
 			<div class="form-group row">
-				<label  class="col-2 ">Price</label>
+				<label  class="col-2 ">Unit Price</label>
 				<div class="col-10">
-					<input type="text" name="price" class="form-control ">
+					<input type="text" name="price" class="form-control price" value={{$products[0]['price']}} disabled>
 				</div>
 			</div>
 
@@ -80,5 +80,14 @@
 		@endif
 	</div>
 
+@endsection
+
+@section('script')
+	let price    = document.querySelector('.price');
+		
+	function changePrice(product) {
+		let priceProduct = product.options[product.selectedIndex].getAttribute('data-price');
+			return price.value  = priceProduct;
+	}
 
 @endsection

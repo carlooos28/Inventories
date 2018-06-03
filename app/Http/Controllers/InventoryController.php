@@ -16,7 +16,7 @@ class InventoryController extends Controller
      */
     public function index(Inventory $inventory)
     {
-        $inventories = $inventory::with('product')->with('supplier')->get();
+        $inventories = $inventory::with('product')->get();
 
         return view('inventory.index', compact('inventories'));
     }
@@ -31,22 +31,17 @@ class InventoryController extends Controller
     {
         // Validations
         $rules = [
+            'supplier_id'     => 'required', 
             'product_id'      => 'required', 
             'quantity'        => 'required', 
             'lote'            => 'required',
-            'expiration_date' => 'required',
-            'price'           => 'required'
+            'expiration_date' => 'required'
         ];
 
         $this->validate($request, $rules);
         
         // Id product
         $product_id = $request->get('product_id');
-
-        // Update Price 
-        $product = Product::findOrFail($product_id);
-        $product->price = $request->price;
-        $product->save();    
 
         // Insert Detail Product
         $data = $request->all();    
@@ -72,8 +67,7 @@ class InventoryController extends Controller
     {        
         $rules = [
             'product_id'  => 'required', 
-            'quantity'    => 'required|numeric', 
-            'price'       => 'required'
+            'quantity'    => 'required|numeric'
         ];
 
         $this->validate($request, $rules);        
@@ -88,7 +82,7 @@ class InventoryController extends Controller
             $inventory->availability = $inventory->availability - $request->quantity;
             $inventory->save();
     
-            return redirect('/inventory');        
+            return redirect('inventory');        
         }
 
         return redirect('inventory')->with('status', 'There is no product availability!');

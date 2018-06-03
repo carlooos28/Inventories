@@ -12,9 +12,4 @@ class Sales extends Model
     {
         return $this->belongsTo('App\Product');
     }
-
-	public function supplier()
-    {
-        return $this->belongsToMany('App\Supplier', 'products', 'id', 'id');
-	}    	
 }

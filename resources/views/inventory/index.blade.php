@@ -8,7 +8,6 @@
 			<thead>
 				<tr>
 				<th>ID</th>
-				<th>Supplier</th>
 				<th>Product</th>
 				<th>Unit Price</th>
 				<th>Quantity</th>
@@ -19,7 +18,6 @@
 				@foreach($inventories as $inventory)
 					<tr>
 						<td>{{$inventory['id']}}</td>        
-						<td>{{$inventory['supplier'][0]['name']}}</td>        
 						<td>{{$inventory['product']['name']}}</td>
 						<td>{{$inventory['product']['price']}}</td>
 						<td>{{$inventory['quantity']}}</td>        

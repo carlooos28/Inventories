@@ -8,7 +8,6 @@
 			<thead>
 				<tr>
 					<th>ID</th>
-					<th>Supplier</th>
 					<th>Product</th>
 					<th>Quantity</th>
 					<th>Unit Price</th>
@@ -21,8 +20,7 @@
 			<tbody> 
 			@foreach($sales as $sale)
 			<tr>
-				<td>{{$sale['id']}}</td>        
-				<td>{{$sale['supplier'][0]['name']}}</td>        
+				<td>{{$sale['id']}}</td>
 				<td>{{$sale['product']['name']}}</td>
 				<td>{{$sale['quantity']}}</td>        
 				<td>{{$sale['product']['price']}}</td>

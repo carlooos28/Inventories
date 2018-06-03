@@ -14,8 +14,7 @@ class ProductsTableSeeder extends Seeder
     	for ($i=0; $i < 3; $i++) { 
 	        DB::table('products')->insert([
                 'name' => "product_".str_random(10),
-                'price' => 50000,
-                'supplier_id' => 1
+                'price' => 50000
 	        ]);
     	}
     }

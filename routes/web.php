@@ -27,7 +27,9 @@ Route::resource('product', 'ProductController', ['only' => [
     'index'
 ]]);
 
-Route::get('sales/invoice/{invoice}', 'SaleController@invoice');
+Route::get('sales/invoice/{invoice}', 'SaleController@invoice', ['only' => [
+    'index', 'show'
+]]);
 
 Route::resource('sales', 'SaleController', ['only' => [
     'index', 'store', 'show', 'update'
