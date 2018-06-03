@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Inventory;
 use App\Product;
 use App\DetailProduct;
+use App\Sales;
 
 class InventoryController extends Controller
 {
@@ -79,13 +80,18 @@ class InventoryController extends Controller
 
         if($inventory->availability > 0 && $request->quantity <= $inventory->availability ){
 
+            // Insert Sale
+            $dataSale = $request->all();    
+            $dataSale["status"] = "sold";
+            $sale = Sales::create($dataSale);
+
             $inventory->availability = $inventory->availability - $request->quantity;
             $inventory->save();
     
-            return redirect('inventory');        
+            return redirect('sales');        
         }
 
-        return redirect('inventory')->with('status', 'There is no product availability!');
+        return redirect('product')->with('status', 'There is no product availability!');
 
     }    
 }

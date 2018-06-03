@@ -43,12 +43,9 @@
 			@endforeach
 			</tbody>
 		</table>
-	</div>
 
-	@if (session('status'))
-	<div class="alert alert-success">
-		{{ session('status') }}
+		{{ $sales->links('vendor.pagination.bootstrap-4') }}
+
 	</div>
-	@endif
 
 @endsection

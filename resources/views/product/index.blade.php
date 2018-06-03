@@ -35,7 +35,11 @@
             </div>
         </div>
 
-        <button type="submit" class="btn btn-success  float-right"> Save </button>
+        <div class="form-group row">
+            <div class="col-12">
+                <button type="submit" class="btn btn-success  float-right"> Save </button>
+            </div>
+        </div>        
 
     </form>
 
@@ -48,6 +52,12 @@
             </ul>
         </div>
     @endif
+
+	@if (session('status'))
+	<div class="alert alert-info">
+		{{ session('status') }}
+	</div>
+	@endif    
 @endsection
 
 @section('script')
