@@ -54,7 +54,8 @@ class InventoryController extends Controller
 
         // Update inventories 
         $inventory = Inventory::findOrFail($product_id);
-        $inventory->quantity = $request->quantity + $inventory->quantity;
+        $inventory->quantity     = $request->quantity + $inventory->quantity;
+        $inventory->availability = $request->quantity + $inventory->availability;
         $inventory->save();
 
         return redirect('/inventory');
@@ -90,7 +91,7 @@ class InventoryController extends Controller
             return redirect('/inventory');        
         }
 
-        return redirect('inventory')->with('status', 'there is no product availability!');
+        return redirect('inventory')->with('status', 'There is no product availability!');
 
     }    
 }

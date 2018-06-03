@@ -60,21 +60,25 @@
 					<input type="text" name="price" class="form-control ">
 				</div>
 			</div>
-			
-			<button type="submit" class="btn btn-success  float-right"> Save </button>
-			
+
+			<div class="row">
+				<div class="col-12">
+					<button type="submit" class="btn btn-success  float-right"> Save </button>
+					<br><br>
+				</div>
+			</div>			
+
 		</form>
-
+		@if ($errors->any())
+		<div class="alert alert-danger">			
+			<ul>			
+				@foreach ($errors->all() as $error)
+					<li>{{ $error }}</li>
+				@endforeach
+			</ul>
+		</div>
+		@endif
 	</div>
 
-	@if ($errors->any())
-	<div class="alert alert-danger">
-		<ul>
-			@foreach ($errors->all() as $error)
-				<li>{{ $error }}</li>
-			@endforeach
-		</ul>
-	</div>
-	@endif
 
 @endsection

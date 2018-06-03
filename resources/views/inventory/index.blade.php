@@ -28,11 +28,11 @@
 				@endforeach
 			</tbody>
 		</table>
+		@if (session('status'))
+			<div class="alert alert-info">
+				{{ session('status') }}
+			</div>
+		@endif  		
 	</div>
 
-	@if (session('status'))
-	<div class="alert alert-success">
-		{{ session('status') }}
-	</div>
-	@endif  
 @endsection
